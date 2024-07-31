@@ -42,14 +42,6 @@ class ChainList(
         return cls("0x1")
     
     @schemas.classproperty
-    def GOERLI(cls):
-        return cls("goerli")
-    
-    @schemas.classproperty
-    def X5(cls):
-        return cls("0x5")
-    
-    @schemas.classproperty
     def SEPOLIA(cls):
         return cls("sepolia")
     
@@ -64,14 +56,6 @@ class ChainList(
     @schemas.classproperty
     def X89(cls):
         return cls("0x89")
-    
-    @schemas.classproperty
-    def MUMBAI(cls):
-        return cls("mumbai")
-    
-    @schemas.classproperty
-    def X13881(cls):
-        return cls("0x13881")
     
     @schemas.classproperty
     def BSC(cls):
@@ -128,3 +112,115 @@ class ChainList(
     @schemas.classproperty
     def XA4B1(cls):
         return cls("0xa4b1")
+    
+    @schemas.classproperty
+    def CHILIZ(cls):
+        return cls("chiliz")
+    
+    @schemas.classproperty
+    def X15B38(cls):
+        return cls("0x15b38")
+    
+    @schemas.classproperty
+    def CHILIZ_TESTNET(cls):
+        return cls("chiliz testnet")
+    
+    @schemas.classproperty
+    def X15B32(cls):
+        return cls("0x15b32")
+    
+    @schemas.classproperty
+    def GNOSIS(cls):
+        return cls("gnosis")
+    
+    @schemas.classproperty
+    def X64(cls):
+        return cls("0x64")
+    
+    @schemas.classproperty
+    def GNOSIS_TESTNET(cls):
+        return cls("gnosis testnet")
+    
+    @schemas.classproperty
+    def X27D8(cls):
+        return cls("0x27d8")
+    
+    @schemas.classproperty
+    def BASE(cls):
+        return cls("base")
+    
+    @schemas.classproperty
+    def X2105(cls):
+        return cls("0x2105")
+    
+    @schemas.classproperty
+    def BASE_SEPOLIA(cls):
+        return cls("base sepolia")
+    
+    @schemas.classproperty
+    def X14A34(cls):
+        return cls("0x14a34")
+    
+    @schemas.classproperty
+    def OPTIMISM(cls):
+        return cls("optimism")
+    
+    @schemas.classproperty
+    def XA(cls):
+        return cls("0xa")
+    
+    @schemas.classproperty
+    def HOLESKY(cls):
+        return cls("holesky")
+    
+    @schemas.classproperty
+    def X4268(cls):
+        return cls("0x4268")
+    
+    @schemas.classproperty
+    def POLYGON_AMOY(cls):
+        return cls("polygon amoy")
+    
+    @schemas.classproperty
+    def X13882(cls):
+        return cls("0x13882")
+    
+    @schemas.classproperty
+    def LINEA(cls):
+        return cls("linea")
+    
+    @schemas.classproperty
+    def XE708(cls):
+        return cls("0xe708")
+    
+    @schemas.classproperty
+    def MOONBEAM(cls):
+        return cls("moonbeam")
+    
+    @schemas.classproperty
+    def X504(cls):
+        return cls("0x504")
+    
+    @schemas.classproperty
+    def MOONRIVER(cls):
+        return cls("moonriver")
+    
+    @schemas.classproperty
+    def X505(cls):
+        return cls("0x505")
+    
+    @schemas.classproperty
+    def MOONBASE(cls):
+        return cls("moonbase")
+    
+    @schemas.classproperty
+    def X507(cls):
+        return cls("0x507")
+    
+    @schemas.classproperty
+    def LINEA_SEPOLIA(cls):
+        return cls("linea sepolia")
+    
+    @schemas.classproperty
+    def XE705(cls):
+        return cls("0xe705")

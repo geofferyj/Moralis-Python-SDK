@@ -41,7 +41,6 @@ class Transaction(
             "receipt_cumulative_gas_used",
             "block_hash",
             "block_number",
-            "to_address",
             "transaction_index",
             "nonce",
             "input",
@@ -59,7 +58,6 @@ class Transaction(
             nonce = schemas.StrSchema
             transaction_index = schemas.StrSchema
             from_address = schemas.StrSchema
-            to_address = schemas.StrSchema
             value = schemas.StrSchema
             gas = schemas.StrSchema
             gas_price = schemas.StrSchema
@@ -72,84 +70,52 @@ class Transaction(
             block_timestamp = schemas.StrSchema
             block_number = schemas.StrSchema
             block_hash = schemas.StrSchema
+            from_address_entity = schemas.StrSchema
+            from_address_entity_logo = schemas.StrSchema
             
             
             class from_address_label(
-                schemas.ComposedSchema,
+                schemas.StrBase,
+                schemas.NoneBase,
+                schemas.Schema,
+                schemas.NoneStrMixin
             ):
-            
-            
-                class MetaOapg:
-                    one_of_0 = schemas.StrSchema
-                    one_of_1 = schemas.NoneSchema
-                    
-                    @classmethod
-                    @functools.lru_cache()
-                    def one_of(cls):
-                        # we need this here to make our import statements work
-                        # we must store _composed_schemas in here so the code is only run
-                        # when we invoke this method. If we kept this at the class
-                        # level we would get an error because the class level
-                        # code would be run when this module is imported, and these composed
-                        # classes don't exist yet because their module has not finished
-                        # loading
-                        return [
-                            cls.one_of_0,
-                            cls.one_of_1,
-                        ]
             
             
                 def __new__(
                     cls,
-                    *args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
+                    *args: typing.Union[None, str, ],
                     _configuration: typing.Optional[schemas.Configuration] = None,
-                    **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
                 ) -> 'from_address_label':
                     return super().__new__(
                         cls,
                         *args,
                         _configuration=_configuration,
-                        **kwargs,
                     )
+            to_address_entity = schemas.StrSchema
+            to_address_entity_logo = schemas.StrSchema
+            to_address = schemas.StrSchema
             
             
             class to_address_label(
-                schemas.ComposedSchema,
+                schemas.StrBase,
+                schemas.NoneBase,
+                schemas.Schema,
+                schemas.NoneStrMixin
             ):
-            
-            
-                class MetaOapg:
-                    one_of_0 = schemas.StrSchema
-                    one_of_1 = schemas.NoneSchema
-                    
-                    @classmethod
-                    @functools.lru_cache()
-                    def one_of(cls):
-                        # we need this here to make our import statements work
-                        # we must store _composed_schemas in here so the code is only run
-                        # when we invoke this method. If we kept this at the class
-                        # level we would get an error because the class level
-                        # code would be run when this module is imported, and these composed
-                        # classes don't exist yet because their module has not finished
-                        # loading
-                        return [
-                            cls.one_of_0,
-                            cls.one_of_1,
-                        ]
             
             
                 def __new__(
                     cls,
-                    *args: typing.Union[dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, ],
+                    *args: typing.Union[None, str, ],
                     _configuration: typing.Optional[schemas.Configuration] = None,
-                    **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
                 ) -> 'to_address_label':
                     return super().__new__(
                         cls,
                         *args,
                         _configuration=_configuration,
-                        **kwargs,
                     )
+            transaction_fee = schemas.StrSchema
             
             
             class internal_transactions(
@@ -181,7 +147,6 @@ class Transaction(
                 "nonce": nonce,
                 "transaction_index": transaction_index,
                 "from_address": from_address,
-                "to_address": to_address,
                 "value": value,
                 "gas": gas,
                 "gas_price": gas_price,
@@ -194,8 +159,14 @@ class Transaction(
                 "block_timestamp": block_timestamp,
                 "block_number": block_number,
                 "block_hash": block_hash,
+                "from_address_entity": from_address_entity,
+                "from_address_entity_logo": from_address_entity_logo,
                 "from_address_label": from_address_label,
+                "to_address_entity": to_address_entity,
+                "to_address_entity_logo": to_address_entity_logo,
+                "to_address": to_address,
                 "to_address_label": to_address_label,
+                "transaction_fee": transaction_fee,
                 "internal_transactions": internal_transactions,
             }
 
@@ -206,7 +177,6 @@ class Transaction(
     receipt_cumulative_gas_used: MetaOapg.properties.receipt_cumulative_gas_used
     block_hash: MetaOapg.properties.block_hash
     block_number: MetaOapg.properties.block_number
-    to_address: MetaOapg.properties.to_address
     transaction_index: MetaOapg.properties.transaction_index
     nonce: MetaOapg.properties.nonce
     input: MetaOapg.properties.input
@@ -229,9 +199,6 @@ class Transaction(
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["from_address"]) -> MetaOapg.properties.from_address: ...
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["to_address"]) -> MetaOapg.properties.to_address: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["value"]) -> MetaOapg.properties.value: ...
@@ -270,10 +237,28 @@ class Transaction(
     def __getitem__(self, name: typing_extensions.Literal["block_hash"]) -> MetaOapg.properties.block_hash: ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["from_address_entity"]) -> MetaOapg.properties.from_address_entity: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["from_address_entity_logo"]) -> MetaOapg.properties.from_address_entity_logo: ...
+    
+    @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["from_address_label"]) -> MetaOapg.properties.from_address_label: ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["to_address_entity"]) -> MetaOapg.properties.to_address_entity: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["to_address_entity_logo"]) -> MetaOapg.properties.to_address_entity_logo: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["to_address"]) -> MetaOapg.properties.to_address: ...
+    
+    @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["to_address_label"]) -> MetaOapg.properties.to_address_label: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["transaction_fee"]) -> MetaOapg.properties.transaction_fee: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["internal_transactions"]) -> MetaOapg.properties.internal_transactions: ...
@@ -281,7 +266,7 @@ class Transaction(
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["hash", "nonce", "transaction_index", "from_address", "to_address", "value", "gas", "gas_price", "input", "receipt_cumulative_gas_used", "receipt_gas_used", "receipt_contract_address", "receipt_root", "receipt_status", "block_timestamp", "block_number", "block_hash", "from_address_label", "to_address_label", "internal_transactions", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["hash", "nonce", "transaction_index", "from_address", "value", "gas", "gas_price", "input", "receipt_cumulative_gas_used", "receipt_gas_used", "receipt_contract_address", "receipt_root", "receipt_status", "block_timestamp", "block_number", "block_hash", "from_address_entity", "from_address_entity_logo", "from_address_label", "to_address_entity", "to_address_entity_logo", "to_address", "to_address_label", "transaction_fee", "internal_transactions", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -297,9 +282,6 @@ class Transaction(
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["from_address"]) -> MetaOapg.properties.from_address: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["to_address"]) -> MetaOapg.properties.to_address: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["value"]) -> MetaOapg.properties.value: ...
@@ -338,10 +320,28 @@ class Transaction(
     def get_item_oapg(self, name: typing_extensions.Literal["block_hash"]) -> MetaOapg.properties.block_hash: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["from_address_entity"]) -> typing.Union[MetaOapg.properties.from_address_entity, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["from_address_entity_logo"]) -> typing.Union[MetaOapg.properties.from_address_entity_logo, schemas.Unset]: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["from_address_label"]) -> typing.Union[MetaOapg.properties.from_address_label, schemas.Unset]: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["to_address_entity"]) -> typing.Union[MetaOapg.properties.to_address_entity, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["to_address_entity_logo"]) -> typing.Union[MetaOapg.properties.to_address_entity_logo, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["to_address"]) -> typing.Union[MetaOapg.properties.to_address, schemas.Unset]: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["to_address_label"]) -> typing.Union[MetaOapg.properties.to_address_label, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["transaction_fee"]) -> typing.Union[MetaOapg.properties.transaction_fee, schemas.Unset]: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["internal_transactions"]) -> typing.Union[MetaOapg.properties.internal_transactions, schemas.Unset]: ...
@@ -349,7 +349,7 @@ class Transaction(
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["hash", "nonce", "transaction_index", "from_address", "to_address", "value", "gas", "gas_price", "input", "receipt_cumulative_gas_used", "receipt_gas_used", "receipt_contract_address", "receipt_root", "receipt_status", "block_timestamp", "block_number", "block_hash", "from_address_label", "to_address_label", "internal_transactions", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["hash", "nonce", "transaction_index", "from_address", "value", "gas", "gas_price", "input", "receipt_cumulative_gas_used", "receipt_gas_used", "receipt_contract_address", "receipt_root", "receipt_status", "block_timestamp", "block_number", "block_hash", "from_address_entity", "from_address_entity_logo", "from_address_label", "to_address_entity", "to_address_entity_logo", "to_address", "to_address_label", "transaction_fee", "internal_transactions", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -362,7 +362,6 @@ class Transaction(
         receipt_cumulative_gas_used: typing.Union[MetaOapg.properties.receipt_cumulative_gas_used, str, ],
         block_hash: typing.Union[MetaOapg.properties.block_hash, str, ],
         block_number: typing.Union[MetaOapg.properties.block_number, str, ],
-        to_address: typing.Union[MetaOapg.properties.to_address, str, ],
         transaction_index: typing.Union[MetaOapg.properties.transaction_index, str, ],
         nonce: typing.Union[MetaOapg.properties.nonce, str, ],
         input: typing.Union[MetaOapg.properties.input, str, ],
@@ -373,8 +372,14 @@ class Transaction(
         receipt_root: typing.Union[MetaOapg.properties.receipt_root, str, ],
         value: typing.Union[MetaOapg.properties.value, str, ],
         hash: typing.Union[MetaOapg.properties.hash, str, ],
-        from_address_label: typing.Union[MetaOapg.properties.from_address_label, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, schemas.Unset] = schemas.unset,
-        to_address_label: typing.Union[MetaOapg.properties.to_address_label, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, bool, None, list, tuple, bytes, io.FileIO, io.BufferedReader, schemas.Unset] = schemas.unset,
+        from_address_entity: typing.Union[MetaOapg.properties.from_address_entity, str, schemas.Unset] = schemas.unset,
+        from_address_entity_logo: typing.Union[MetaOapg.properties.from_address_entity_logo, str, schemas.Unset] = schemas.unset,
+        from_address_label: typing.Union[MetaOapg.properties.from_address_label, None, str, schemas.Unset] = schemas.unset,
+        to_address_entity: typing.Union[MetaOapg.properties.to_address_entity, str, schemas.Unset] = schemas.unset,
+        to_address_entity_logo: typing.Union[MetaOapg.properties.to_address_entity_logo, str, schemas.Unset] = schemas.unset,
+        to_address: typing.Union[MetaOapg.properties.to_address, str, schemas.Unset] = schemas.unset,
+        to_address_label: typing.Union[MetaOapg.properties.to_address_label, None, str, schemas.Unset] = schemas.unset,
+        transaction_fee: typing.Union[MetaOapg.properties.transaction_fee, str, schemas.Unset] = schemas.unset,
         internal_transactions: typing.Union[MetaOapg.properties.internal_transactions, list, tuple, schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
@@ -388,7 +393,6 @@ class Transaction(
             receipt_cumulative_gas_used=receipt_cumulative_gas_used,
             block_hash=block_hash,
             block_number=block_number,
-            to_address=to_address,
             transaction_index=transaction_index,
             nonce=nonce,
             input=input,
@@ -399,8 +403,14 @@ class Transaction(
             receipt_root=receipt_root,
             value=value,
             hash=hash,
+            from_address_entity=from_address_entity,
+            from_address_entity_logo=from_address_entity_logo,
             from_address_label=from_address_label,
+            to_address_entity=to_address_entity,
+            to_address_entity_logo=to_address_entity_logo,
+            to_address=to_address,
             to_address_label=to_address_label,
+            transaction_fee=transaction_fee,
             internal_transactions=internal_transactions,
             _configuration=_configuration,
             **kwargs,
