@@ -6,7 +6,7 @@ REQUIRES = [
     "frozendict ~= 2.3.4",
     "python-dateutil ~= 2.8.2",
     "typing_extensions >= 4.3.0",
-    "urllib3 >= 1.26.7",
+    "urllib3 >= 1.26.19",
 ]
 
 setup(
